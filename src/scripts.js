@@ -40,11 +40,10 @@ const fetchAndDisplayShows = async () => {
       commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
 
       // Add heart icon to the list item
-      heartIcon.classList.add("fa-regular","fa-heart"); // Assigning classes for the Font Awesome heart icon
-      // Add the heart icon to the list item before the comment button
+      heartIcon.classList.add('far', 'fa-heart'); // Assigning classes for the Font Awesome heart icon
+      listItem.appendChild(heartIcon); // Add the heart icon to the list item before the comment button
 
       listItem.appendChild(imageElement);
-      listItem.appendChild(heartIcon);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
 
