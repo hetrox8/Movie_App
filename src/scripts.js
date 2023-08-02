@@ -14,16 +14,30 @@ const fetchAndDisplayShows = async () => {
     }
     const data = await response.json();
     const listElement = document.querySelector('.list-1');
+    //clearList();
 
-    // Clear the existing list before displaying new shows
-    clearList();
-
-    // Display only the first 10 shows
     for (let i = 0; i < showsPerPage; i++) {
       const show = data[i];
-      if (!show) break; // If there are fewer than 10 shows, break out of the loop
+      if (!show) break;
+
       const listItem = document.createElement('li');
-      listItem.textContent = show.name;
+      const imageElement = document.createElement('img');
+      const titleElement = document.createElement('h3');
+      const summaryElement = document.createElement('p');
+      const premiereDateElement = document.createElement('p');
+
+      imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
+      imageElement.alt = show.name;
+
+      titleElement.textContent = show.name;
+      summaryElement.textContent = show.summary || 'No summary available';
+      premiereDateElement.textContent = show.premiereDate || 'No premiere date available';
+
+      listItem.appendChild(imageElement);
+      listItem.appendChild(titleElement);
+     /* listItem.appendChild(summaryElement);
+      listItem.appendChild(premiereDateElement);
+*/
       listElement.appendChild(listItem);
     }
   } catch (error) {

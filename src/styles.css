@@ -3,3 +3,22 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.list-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.list-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25%;
+  margin: 0 8rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
