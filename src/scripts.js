@@ -1,4 +1,4 @@
-import './styles.css'
+import './styles.css';
 
 const navMenus = document.querySelector('.nav-menu');
 const openHamburger = document.querySelector('.mobile-menu-icon');
