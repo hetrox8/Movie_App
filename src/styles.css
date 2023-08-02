@@ -1,7 +1,147 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
+  list-style: none;
+  scroll-behavior: smooth;
   box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+.backgrounds {
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  position: relative;
+}
+
+@media (min-width: 375px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: flex;
+    justify-content: end;
+    padding: 20px 35px;
+  }
+
+  .mobile-menu-close-icon {
+    display: none;
+  }
+
+  .social-icons ul {
+    display: flex;
+    gap: 20px;
+    margin-top: 1.25rem;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-icons ul li a {
+    text-decoration: none;
+  }
+
+  .nav-menu.show {
+    display: block;
+    height: 100vh;
+    background: #fff;
+    animation: 2s slideIn ease-in alternate;
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-50%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .nav-menu.show ul {
+    margin-left: 28px;
+    list-style: none;
+    display: grid;
+    gap: 40px;
+    padding-top: 108px;
+  }
+
+  .nav-menu.show li a {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    color: #3a4a42;
+  }
+
+  .mobile-menu-icon.show {
+    display: none;
+  }
+
+  .mobile-menu-close-icon.show {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 1.125rem;
+    right: 2.1875rem;
+  }
+
+  nav svg {
+    height: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-menu {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+  }
+
+  .nav-menu ul {
+    display: flex;
+    gap: 25px;
+  }
+
+  .nav-menu ul li a {
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #050e1d;
+  }
+
+  .nav-menu li a:hover {
+    color: #2b45bb;
+  }
+
+  .nav-menu li a:active {
+    color: #5c6cb3;
+  }
+
+  .mobile-menu-icon {
+    display: none;
+  }
+
+  .mobile-menu-close-icon {
+    display: none;
+  }
 }
 
 footer {
