@@ -24,6 +24,19 @@
   
 }
 
+.last {
+ width: 100%;
+ margin: 0 auto;
+ padding: 5%;
+ position: relative;
+}
+
+#load-more-button {
+ position: relative;
+ top: 50;
+  
+}
+
 body {
   position: relative;
   font-family: Inter, sans-serif;
@@ -197,6 +210,6 @@ footer {
   font-size: 28px;
   color: #000;
   font-weight: 500;
-  margin-top: 2rem;
+  margin-top: 15%;
   text-align: center;
 }

@@ -16,7 +16,7 @@ const fetchAndDisplayShows = async () => {
     }
     const data = await response.json();
     const listElement = document.querySelector('.list-1');
-    //clearList();
+    // clearList();
 
     for (let i = 0; i < showsPerPage; i++) {
       const show = data[i];
