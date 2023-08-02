@@ -20,11 +20,9 @@
   margin: 0 8rem;
 }
 
-ul {
-  list-style-type: none;
 body {
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 .backgrounds {
@@ -39,7 +37,7 @@ nav {
   position: relative;
 }
 
-@media (min-width: 375px) {
+@media (width >= 375px) {
   .nav-menu {
     display: none;
   }
@@ -71,10 +69,10 @@ nav {
     display: block;
     height: 100vh;
     background: #fff;
-    animation: 2s slideIn ease-in alternate;
+    animation: 2s slidein ease-in alternate;
   }
 
-  @keyframes slideIn {
+  @keyframes slidein {
     0% {
       transform: translateX(-50%);
     }
@@ -118,7 +116,7 @@ nav {
   }
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .nav-menu {
     display: flex;
     position: relative;
@@ -134,7 +132,7 @@ nav {
 
   .nav-menu ul li a {
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;

@@ -1,3 +1,5 @@
+// script.js
+
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
@@ -25,6 +27,8 @@ const fetchAndDisplayShows = async () => {
       const titleElement = document.createElement('h3');
       const summaryElement = document.createElement('p');
       const premiereDateElement = document.createElement('p');
+      const commentBtn = document.createElement('button');
+      const heartIcon = document.createElement('i'); // Heart icon element
 
       imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
       imageElement.alt = show.name;
@@ -32,12 +36,18 @@ const fetchAndDisplayShows = async () => {
       titleElement.textContent = show.name;
       summaryElement.textContent = show.summary || 'No summary available';
       premiereDateElement.textContent = show.premiereDate || 'No premiere date available';
+      commentBtn.textContent = 'comment here';
+      commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
+
+      // Add heart icon to the list item
+      heartIcon.classList.add("fa-regular","fa-heart"); // Assigning classes for the Font Awesome heart icon
+      // Add the heart icon to the list item before the comment button
 
       listItem.appendChild(imageElement);
+      listItem.appendChild(heartIcon);
       listItem.appendChild(titleElement);
-     /* listItem.appendChild(summaryElement);
-      listItem.appendChild(premiereDateElement);
-*/
+      listItem.appendChild(commentBtn);
+
       listElement.appendChild(listItem);
     }
   } catch (error) {
@@ -63,6 +73,7 @@ loadMoreButton.addEventListener('click', fetchNextPage);
 window.addEventListener('DOMContentLoaded', () => {
   fetchAndDisplayShows();
 });
+
 const navMenus = document.querySelector('.nav-menu');
 const openHamburger = document.querySelector('.mobile-menu-icon');
 const closeHamburger = document.querySelector('.mobile-menu-close-icon');
