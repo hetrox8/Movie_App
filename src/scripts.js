@@ -39,17 +39,15 @@ const fetchAndDisplayShows = async () => {
       commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
 
       // Add heart icon to the list item
-    //
-    
-    
-        //    heartIcon.classList.add('i fa-duotone fa-heart');
-       
-    // Add the heart icon to the list item before the comment button
+      //
+      // heartIcon.classList.add('i fa-duotone fa-heart');
+      //
+      // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
       listElement.appendChild(listItem);
-      listItem.appendChild(heartIcon); 
+      listItem.appendChild(heartIcon);
     }
   } catch (error) {
     console.error('Error:', error);
