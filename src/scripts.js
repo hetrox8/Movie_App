@@ -2,6 +2,8 @@
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
+const INVOLVEMENT_API_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+
 const showsPerPage = 10;
 let currentPage = 0;
 
@@ -23,15 +25,6 @@ const getItemLikes = async (appId, itemId) => {
   }
 };
 
-const fetchLikesForAllShows = async (appId, data) => {
-  const likesMap = new Map();
-  for (const show of data) {
-    const likes = await getItemLikes(appId, show.id);
-    likesMap.set(show.id, likes);
-  }
-  return likesMap;
-};
-
 const fetchAndDisplayShows = async () => {
   try {
     const response = await fetch(getShowsEndpoint(currentPage));
@@ -42,7 +35,8 @@ const fetchAndDisplayShows = async () => {
     const listElement = document.querySelector('.list-1');
 
     const appId = 'abc234'; // Your app's unique identifier (replace with the actual identifier)
-    const likesMap = await fetchLikesForAllShows(appId, data);
+    const likesPromises = data.map((show) => getItemLikes(appId, show.id));
+    const likes = await Promise.all(likesPromises);
 
     for (let i = 0; i < showsPerPage; i += 1) {
       const show = data[i];
@@ -65,12 +59,9 @@ const fetchAndDisplayShows = async () => {
       commentBtn.textContent = 'comment here';
       commentBtn.classList.add('comment-btn');
 
-      // Get likes for the current item from the pre-fetched likes map
-      const likes = likesMap.get(show.id);
-
-      // Add likes to the list item
+      // Get likes for the current item from the pre-fetched likes
       const likesElement = document.createElement('span');
-      likesElement.textContent = `Likes: ${likes}`;
+      likesElement.textContent = `Likes: ${likes[i]}`;
 
       // Add heart icon to the list item
       heartIcon.classList.add('ti-heart', 'icon-heart');
