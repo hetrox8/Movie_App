@@ -17,7 +17,7 @@ const fetchAndDisplayShows = async () => {
     const listElement = document.querySelector('.list-1');
     // clearList();
 
-    for (let i = 0; i < showsPerPage; i++) {
+    for (let i = 0; i < showsPerPage; currentPage += 1) {
       const show = data[i];
       if (!show) break;
 
