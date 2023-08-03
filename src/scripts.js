@@ -2,10 +2,28 @@
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
+const INVOLVEMENT_API_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
+
 const showsPerPage = 10;
 let currentPage = 0;
 
 const getShowsEndpoint = (page) => `${BASE_API_URL}?page=${page}`;
+
+const getItemLikesEndpoint = (appId, itemId) => `${INVOLVEMENT_API_URL}/apps/${appId}/likes?item_id=${itemId}`;
+
+const getItemLikes = async (appId, itemId) => {
+  try {
+    const response = await fetch(getItemLikesEndpoint(appId, itemId));
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data.length > 0 ? data[0].likes : 0;
+  } catch (error) {
+    console.error('Error:', error);
+    return 0;
+  }
+};
 
 const fetchAndDisplayShows = async () => {
   try {
@@ -15,9 +33,12 @@ const fetchAndDisplayShows = async () => {
     }
     const data = await response.json();
     const listElement = document.querySelector('.list-1');
-    // clearList();
 
-    for (let i = 0; i < showsPerPage; currentPage += 1) {
+    const appId = 'abc234'; // Your app's unique identifier (replace with the actual identifier)
+    const likesPromises = data.map((show) => getItemLikes(appId, show.id));
+    const likes = await Promise.all(likesPromises);
+
+    for (let i = 0; i < showsPerPage; i += 1) {
       const show = data[i];
       if (!show) break;
 
@@ -27,7 +48,7 @@ const fetchAndDisplayShows = async () => {
       const summaryElement = document.createElement('p');
       const premiereDateElement = document.createElement('p');
       const commentBtn = document.createElement('button');
-      const heartIcon = document.createElement('i'); // Heart icon element
+      const heartIcon = document.createElement('i');
       const timify = document.createElement('span');
       imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
       imageElement.alt = show.name;
@@ -36,31 +57,28 @@ const fetchAndDisplayShows = async () => {
       summaryElement.textContent = show.summary || 'No summary available';
       premiereDateElement.textContent = show.premiereDate || 'No premiere date available';
       commentBtn.textContent = 'comment here';
-      commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
+      commentBtn.classList.add('comment-btn');
+
+      // Get likes for the current item from the pre-fetched likes
+      const likesElement = document.createElement('span');
+      likesElement.textContent = `Likes: ${likes[i]}`;
 
       // Add heart icon to the list item
-      //
       heartIcon.classList.add('ti-heart', 'icon-heart');
       timify.appendChild(heartIcon);
-      // Add the heart icon to the list item before the comment button
+      // Add the heart icon and likes to the list item before the comment button
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
-      listElement.appendChild(listItem);
+      listItem.appendChild(likesElement);
       listItem.appendChild(timify);
+      listElement.appendChild(listItem);
     }
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
-/* const clearList = () => {
-  const listElement = document.querySelector('.list-1');
-  while (listElement.firstChild) {
-    listElement.removeChild(listElement.firstChild);
-  }
-};
-*/
 const fetchNextPage = () => {
   currentPage += 1;
   fetchAndDisplayShows();
@@ -71,32 +89,4 @@ loadMoreButton.addEventListener('click', fetchNextPage);
 
 window.addEventListener('DOMContentLoaded', () => {
   fetchAndDisplayShows();
-});
-
-const navMenus = document.querySelector('.nav-menu');
-const openHamburger = document.querySelector('.mobile-menu-icon');
-const closeHamburger = document.querySelector('.mobile-menu-close-icon');
-const mobileMenuLinks = document.querySelectorAll('.mobile-links');
-
-openHamburger.addEventListener('click', () => {
-  navMenus.classList.add('show');
-  openHamburger.classList.add('hide');
-  closeHamburger.classList.add('show');
-  document.body.style.overflow = 'hidden';
-});
-
-closeHamburger.addEventListener('click', () => {
-  navMenus.classList.remove('show');
-  openHamburger.classList.remove('hide');
-  closeHamburger.classList.remove('show');
-  document.body.style.overflow = 'auto';
-});
-
-mobileMenuLinks.forEach((link) => {
-  link.addEventListener('click', () => {
-    navMenus.classList.remove('show');
-    openHamburger.classList.remove('hide');
-    closeHamburger.classList.remove('show');
-    document.body.style.overflow = 'auto';
-  });
 });
