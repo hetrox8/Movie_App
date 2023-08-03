@@ -17,7 +17,7 @@ const fetchAndDisplayShows = async () => {
     const listElement = document.querySelector('.list-1');
     // clearList();
 
-    for (let i = 0; i < showsPerPage; i++) {
+    for (let i = 0; i < showsPerPage; currentPage += 1) {
       const show = data[i];
       if (!show) break;
 
@@ -40,8 +40,8 @@ const fetchAndDisplayShows = async () => {
 
       // Add heart icon to the list item
       //
-       heartIcon.classList.add('ti-heart', 'icon-heart');
-       timify.appendChild(heartIcon);
+      heartIcon.classList.add('ti-heart', 'icon-heart');
+      timify.appendChild(heartIcon);
       // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
@@ -54,15 +54,15 @@ const fetchAndDisplayShows = async () => {
   }
 };
 
-const clearList = () => {
+/* const clearList = () => {
   const listElement = document.querySelector('.list-1');
   while (listElement.firstChild) {
     listElement.removeChild(listElement.firstChild);
   }
 };
-
+*/
 const fetchNextPage = () => {
-  currentPage++;
+  currentPage += 1;
   fetchAndDisplayShows();
 };
 
