@@ -1,11 +1,41 @@
-// script.js
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
 const showsPerPage = 10;
 let currentPage = 0;
+let currentPopup = null;
 
 const getShowsEndpoint = (page) => `${BASE_API_URL}?page=${page}`;
+
+const popupCard = (show) => {
+  const popup = document.querySelector('.popup');
+
+  if (currentPopup) {
+    popup.removeChild(currentPopup);
+  }
+
+  const popupCommentCard = document.createElement('div');
+  popupCommentCard.classList.add('popup-comment-card');
+
+  popupCommentCard.innerHTML = `
+    <div>
+      <span class='popup-close-button'><i class="ti-close"></i></span>
+      <img src='${show.image && show.image.medium ? show.image.medium : 'placeholder.png'}' alt='${show.name}' />
+      <h2>${show.name}</h2>
+      <p>${show.summary}</p>
+    </div>
+  `;
+
+  popup.appendChild(popupCommentCard);
+  currentPopup = popupCommentCard;
+
+  const popupCloseButton = document.querySelector('.popup-close-button');
+
+  popupCloseButton.addEventListener('click', () => {
+    popup.removeChild(popupCommentCard);
+    currentPopup = null;
+  });
+};
 
 const fetchAndDisplayShows = async () => {
   try {
@@ -26,7 +56,7 @@ const fetchAndDisplayShows = async () => {
       const summaryElement = document.createElement('p');
       const premiereDateElement = document.createElement('p');
       const commentBtn = document.createElement('button');
-      const heartIcon = document.createElement('i'); // Heart icon element
+      const heartIcon = document.createElement('i');
       const timify = document.createElement('span');
       imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
       imageElement.alt = show.name;
@@ -37,11 +67,11 @@ const fetchAndDisplayShows = async () => {
       commentBtn.textContent = 'comment here';
       commentBtn.classList.add('comment-btn');
 
-      // Add heart icon to the list item
-      //
+      commentBtn.addEventListener('click', () => popupCard(show));
+
       heartIcon.classList.add('ti-heart', 'icon-heart');
       timify.appendChild(heartIcon);
-      // Add the heart icon to the list item before the comment button
+
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);

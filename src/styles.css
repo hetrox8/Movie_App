@@ -164,6 +164,10 @@ h3 {
   nav svg {
     height: 60px;
   }
+
+  .list-1 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 768px) {
@@ -206,6 +210,10 @@ h3 {
   .mobile-menu-close-icon {
     display: none;
   }
+
+  .list-1 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 footer {
@@ -215,4 +223,39 @@ footer {
   font-weight: 500;
   margin-top: 15%;
   text-align: center;
+}
+
+.popup-comment-card {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #c1c7d0;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-comment-card span {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  cursor: pointer;
+
+}
+
+.popup-comment-card div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 5rem;
+  background: white;
+  width: 560px;
+  position: relative;
 }
