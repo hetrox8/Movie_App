@@ -16,9 +16,8 @@ const fetchAndDisplayShows = async () => {
     }
     const data = await response.json();
     const listElement = document.querySelector('.list-1');
-    //clearList();
 
-    for (let i = 0; i < showsPerPage; i++) {
+    for (let i = 0; i < showsPerPage; i += 1) {
       const show = data[i];
       if (!show) break;
 
@@ -37,11 +36,9 @@ const fetchAndDisplayShows = async () => {
       summaryElement.textContent = show.summary || 'No summary available';
       premiereDateElement.textContent = show.premiereDate || 'No premiere date available';
       commentBtn.textContent = 'comment here';
-      commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
+      commentBtn.classList.add('comment-btn');
 
-      // Add heart icon to the list item
-      heartIcon.classList.add("fa-regular","fa-heart"); // Assigning classes for the Font Awesome heart icon
-      // Add the heart icon to the list item before the comment button
+      heartIcon.classList.add('fa-regular', 'fa-heart');
 
       listItem.appendChild(imageElement);
       listItem.appendChild(heartIcon);
@@ -55,15 +52,15 @@ const fetchAndDisplayShows = async () => {
   }
 };
 
-const clearList = () => {
-  const listElement = document.querySelector('.list-1');
-  while (listElement.firstChild) {
-    listElement.removeChild(listElement.firstChild);
-  }
-};
+// const clearList = () => {
+//   const listElement = document.querySelector('.list-1');
+//   while (listElement.firstChild) {
+//     listElement.removeChild(listElement.firstChild);
+//   }
+// };
 
 const fetchNextPage = () => {
-  currentPage++;
+  currentPage += 1;
   fetchAndDisplayShows();
 };
 
