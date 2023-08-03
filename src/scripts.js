@@ -1,5 +1,4 @@
 // script.js
-
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
@@ -28,7 +27,7 @@ const fetchAndDisplayShows = async () => {
       const premiereDateElement = document.createElement('p');
       const commentBtn = document.createElement('button');
       const heartIcon = document.createElement('i'); // Heart icon element
-
+      const timify = document.createElement('span');
       imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
       imageElement.alt = show.name;
 
@@ -38,27 +37,29 @@ const fetchAndDisplayShows = async () => {
       commentBtn.textContent = 'comment here';
       commentBtn.classList.add('comment-btn');
 
-      heartIcon.classList.add('fa-regular', 'fa-heart');
-
+      // Add heart icon to the list item
+      //
+      heartIcon.classList.add('ti-heart', 'icon-heart');
+      timify.appendChild(heartIcon);
+      // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);
-      listItem.appendChild(heartIcon);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
-
       listElement.appendChild(listItem);
+      listItem.appendChild(timify);
     }
   } catch (error) {
     console.error('Error:', error);
   }
 };
 
-// const clearList = () => {
-//   const listElement = document.querySelector('.list-1');
-//   while (listElement.firstChild) {
-//     listElement.removeChild(listElement.firstChild);
-//   }
-// };
-
+/* const clearList = () => {
+  const listElement = document.querySelector('.list-1');
+  while (listElement.firstChild) {
+    listElement.removeChild(listElement.firstChild);
+  }
+};
+*/
 const fetchNextPage = () => {
   currentPage += 1;
   fetchAndDisplayShows();
