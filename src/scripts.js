@@ -1,5 +1,4 @@
 // script.js
-
 import './styles.css';
 
 const BASE_API_URL = 'https://api.tvmaze.com/shows';
@@ -40,14 +39,17 @@ const fetchAndDisplayShows = async () => {
       commentBtn.classList.add('comment-btn'); // Assigning class to the comment button
 
       // Add heart icon to the list item
-      heartIcon.classList.add('far', 'fa-heart'); // Assigning classes for the Font Awesome heart icon
-      listItem.appendChild(heartIcon); // Add the heart icon to the list item before the comment button
-
+    //
+    
+    
+        //    heartIcon.classList.add('i fa-duotone fa-heart');
+       
+    // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
-
       listElement.appendChild(listItem);
+      listItem.appendChild(heartIcon); 
     }
   } catch (error) {
     console.error('Error:', error);
