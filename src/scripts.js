@@ -23,6 +23,11 @@ const popupCard = (show) => {
       <img src='${show.image && show.image.medium ? show.image.medium : 'placeholder.png'}' alt='${show.name}' />
       <h2>${show.name}</h2>
       <p>${show.summary}</p>
+      <form>
+        <input type='text' placeholder='Your name' />
+        <textarea placeholder='Your insights'></textarea>
+        <button class='comment-btn' type='submit'>Comment</button>
+      </form>
     </div>
   `;
 
