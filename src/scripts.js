@@ -40,7 +40,7 @@ const fetchAndDisplayShows = async () => {
 
       // Add heart icon to the list item
       //
-       heartIcon.classList.add('ti-heart');
+       heartIcon.classList.add('ti-heart', 'icon-heart');
        timify.appendChild(heartIcon);
       // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);

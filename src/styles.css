@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+.ti-heart >.icon-heart {
+  float: right;
+  font-size: 24px;
+}
+
 .list-container {
   width: 100%;
   display: flex;
