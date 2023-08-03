@@ -17,7 +17,7 @@ const fetchAndDisplayShows = async () => {
     const listElement = document.querySelector('.list-1');
     // clearList();
 
-    for (let i = 0; i < showsPerPage; currentPage += 1) {
+    for (let i = 0; i < showsPerPage; i++) {
       const show = data[i];
       if (!show) break;
 
@@ -28,7 +28,7 @@ const fetchAndDisplayShows = async () => {
       const premiereDateElement = document.createElement('p');
       const commentBtn = document.createElement('button');
       const heartIcon = document.createElement('i'); // Heart icon element
-
+      const timify = document.createElement('span');
       imageElement.src = show.image && show.image.medium ? show.image.medium : 'placeholder.png';
       imageElement.alt = show.name;
 
@@ -40,14 +40,14 @@ const fetchAndDisplayShows = async () => {
 
       // Add heart icon to the list item
       //
-      // heartIcon.classList.add('i fa-duotone fa-heart');
-      //
+       heartIcon.classList.add('ti-heart');
+       timify.appendChild(heartIcon);
       // Add the heart icon to the list item before the comment button
       listItem.appendChild(imageElement);
       listItem.appendChild(titleElement);
       listItem.appendChild(commentBtn);
       listElement.appendChild(listItem);
-      listItem.appendChild(heartIcon);
+      listItem.appendChild(timify);
     }
   } catch (error) {
     console.error('Error:', error);
