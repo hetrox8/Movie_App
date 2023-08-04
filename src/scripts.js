@@ -4,10 +4,32 @@ const BASE_API_URL = 'https://api.tvmaze.com/shows';
 const showsPerPage = 10;
 let currentPage = 0;
 let currentPopup = null;
+const projectId = 'jjyD0ZHHaDsJOn5G8Ri2';
+const involvementAPI = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${projectId}`;
 
 const getShowsEndpoint = (page) => `${BASE_API_URL}?page=${page}`;
 
-const popupCard = (show) => {
+const postComment = async (id, username, comment) => {
+  await fetch(`${involvementAPI}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      item_id: id,
+      username,
+      comment,
+    }),
+  });
+};
+
+const getComment = async (id) => {
+  const response = await fetch(`${involvementAPI}/comments?item_id=${id}`);
+  const data = await response.json();
+  return data;
+};
+
+const popupCard = async (show) => {
   const popup = document.querySelector('.popup');
 
   if (currentPopup) {
@@ -25,6 +47,7 @@ const popupCard = (show) => {
       <p>${show.summary}</p>
       <div>
         <h3>Comments (0)</h3>
+        <ul class='comments-list'></ul>
       </div>
       <h3>Add a comment</h3>
       <form>
@@ -34,6 +57,29 @@ const popupCard = (show) => {
       </form>
     </div>
   `;
+
+  const comments = await getComment(show.id);
+  const commentsList = popupCommentCard.querySelector('.comments-list');
+
+  commentsList.innerHTML = '';
+
+  const commentsCount = comments.length;
+  popupCommentCard.querySelector('h3').textContent = `Comments (${commentsCount})`;
+
+  comments.forEach((comment) => {
+    const commentItem = document.createElement('li');
+    const commentContent = document.createElement('div');
+    const username = document.createElement('span');
+    const commentText = document.createElement('p');
+
+    username.textContent = comment.username;
+    commentText.textContent = comment.comment;
+
+    commentContent.appendChild(username);
+    commentContent.appendChild(commentText);
+    commentItem.appendChild(commentContent);
+    commentsList.appendChild(commentItem);
+  });
 
   popup.appendChild(popupCommentCard);
   currentPopup = popupCommentCard;
@@ -105,7 +151,9 @@ const fetchNextPage = () => {
 };
 
 const loadMoreButton = document.getElementById('load-more-button');
-loadMoreButton.addEventListener('click', fetchNextPage);
+if (loadMoreButton) {
+  loadMoreButton.addEventListener('click', fetchNextPage);
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   fetchAndDisplayShows();
