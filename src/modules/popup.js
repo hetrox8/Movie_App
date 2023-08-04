@@ -1,6 +1,7 @@
 import axios from 'axios';
 import closeImg from '../assets/close.png';
 import getAppName from './localstorage';
+import commentCounter from './commentCount';
 
 const fetchMovie = async (movieid) => {
   console.log(movieid);
@@ -35,6 +36,7 @@ const postComments = async (id, username, comment) => {
   `;
   commentDiv.appendChild(p);
   console.log('Comment added:', response.data);
+  commentCounter();
 };
 
 const displayComments = async (id) => {
@@ -53,6 +55,7 @@ const displayComments = async (id) => {
   } catch (error) {
     console.error(error);
   }
+  commentCounter();
 };
 
 const popContainer = document.querySelector('.popContainer');
@@ -69,9 +72,8 @@ const displayCommentPop = async (movieid) => {
       <img class="img" src="${movieDetails.image.original}" alt="${movieDetails.name}" />
       <h2 class="title">${movieDetails.name}</h2>
       <p class="summary">${movieDetails.summary}</p>
+      <h4>Comments</h4><span class="counter"></span>
       <div class="commentDiv">
-        <h4>Comments</h4>
-        <p class="comments">2024/06/11: dummy comment</p>
       </div>
       <div class="formDiv">
         <h2>Add a Comment</h2>
