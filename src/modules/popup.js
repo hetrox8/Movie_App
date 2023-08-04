@@ -1,6 +1,6 @@
 import axios from 'axios';
 import closeImg from '../assets/close.png';
-import getAppName from './localstorage';
+import getAppName from './localStorage';
 import commentCounter from './commentCount';
 
 const fetchMovie = async (movieid) => {
