@@ -1,6 +1,6 @@
 import axios from 'axios';
 import closeImg from '../assets/close.png';
-import { getAppName } from './localstorage';
+import getAppName from './localstorage';
 
 const fetchMovie = async (movieid) => {
   console.log(movieid);
@@ -16,7 +16,43 @@ const postComments = async (id, username, comment) => {
     username,
     comment,
   });
+  const commentDiv = document.querySelector('.commentDiv');
+  let today = new Date();
+  console.log(today);
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
+  today = `${yyyy}-${mm}-${dd}`;
+  const p = document.createElement('p');
+  p.innerHTML = `
+    ${today}  ${username}: ${comment}
+  `;
+  commentDiv.appendChild(p);
   console.log('Comment added:', response.data);
+};
+
+const displayComments = async (id) => {
+  try {
+    const response = await axios.get(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${getAppName()}/comments?item_id=${id}`);
+    const comments = response.data;
+
+    const commentsContainer = document.querySelector('.commentDiv');
+    commentsContainer.innerHTML = '';
+
+    comments.forEach((comment) => {
+      const newComment = document.createElement('p');
+      newComment.innerHTML = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+      commentsContainer.appendChild(newComment);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const popContainer = document.querySelector('.popContainer');
@@ -65,9 +101,11 @@ const displayCommentPop = async (movieid) => {
       console.log('empty');
     } else {
       postComments(movieDetails.id, username, comment);
+      displayComments(movieDetails.id);
       addComment.reset();
     }
   });
+  displayComments(movieDetails.id);
 };
 
 export default displayCommentPop;
