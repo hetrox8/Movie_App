@@ -245,7 +245,6 @@ footer {
   top: 2rem;
   right: 1rem;
   cursor: pointer;
-
 }
 
 .popup-comment-card .pop-card {
@@ -261,7 +260,7 @@ footer {
 }
 
 form {
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
@@ -279,8 +278,8 @@ textarea {
 }
 
 .comment-btn {
-  background-color: #4CAF50;
-  color: #ffffff;
+  background-color: #4caf50;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
