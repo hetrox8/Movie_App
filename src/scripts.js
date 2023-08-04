@@ -50,36 +50,13 @@ const popupCard = async (show) => {
         <ul class='comments-list'></ul>
       </div>
       <h3>Add a comment</h3>
-      <form>
-        <input type='text' placeholder='Your name' />
-        <textarea placeholder='Your insights'></textarea>
+      <form class='comment-form'>
+        <input type='text' class='user-commenting' placeholder='Your name' />
+        <textarea class='comment-text' placeholder='Your insights'></textarea>
         <button class='comment-btn' type='submit'>Comment</button>
       </form>
     </div>
   `;
-
-  const comments = await getComment(show.id);
-  const commentsList = popupCommentCard.querySelector('.comments-list');
-
-  commentsList.innerHTML = '';
-
-  const commentsCount = comments.length;
-  popupCommentCard.querySelector('h3').textContent = `Comments (${commentsCount})`;
-
-  comments.forEach((comment) => {
-    const commentItem = document.createElement('li');
-    const commentContent = document.createElement('div');
-    const username = document.createElement('span');
-    const commentText = document.createElement('p');
-
-    username.textContent = comment.username;
-    commentText.textContent = comment.comment;
-
-    commentContent.appendChild(username);
-    commentContent.appendChild(commentText);
-    commentItem.appendChild(commentContent);
-    commentsList.appendChild(commentItem);
-  });
 
   popup.appendChild(popupCommentCard);
   currentPopup = popupCommentCard;
@@ -90,6 +67,29 @@ const popupCard = async (show) => {
     popup.removeChild(popupCommentCard);
     currentPopup = null;
   });
+};
+
+const updateCommentsList = async (showId) => {
+  const commentsListElement = document.querySelector('.comments-list');
+  try {
+    const comments = await getComment(showId);
+
+    // Clear the existing comments list
+    commentsListElement.innerHTML = '';
+
+    // Update the "Comments (x)" header
+    const commentsHeader = document.querySelector('.popup-comment-card h3');
+    commentsHeader.textContent = `Comments (${comments.length})`;
+
+    // Append each comment to the comments list
+    comments.forEach((comment) => {
+      const commentItem = document.createElement('li');
+      commentItem.textContent = `${comment.username}: ${comment.comment}`;
+      commentsListElement.appendChild(commentItem);
+    });
+  } catch (error) {
+    console.error('Error:', error);
+  }
 };
 
 const fetchAndDisplayShows = async () => {
