@@ -18,11 +18,15 @@ const popupCard = (show) => {
   popupCommentCard.classList.add('popup-comment-card');
 
   popupCommentCard.innerHTML = `
-    <div>
+    <div class='pop-card'>
       <span class='popup-close-button'><i class="ti-close"></i></span>
       <img src='${show.image && show.image.medium ? show.image.medium : 'placeholder.png'}' alt='${show.name}' />
       <h2>${show.name}</h2>
       <p>${show.summary}</p>
+      <div>
+        <h3>Comments (0)</h3>
+      </div>
+      <h3>Add a comment</h3>
       <form>
         <input type='text' placeholder='Your name' />
         <textarea placeholder='Your insights'></textarea>

@@ -248,7 +248,7 @@ footer {
 
 }
 
-.popup-comment-card div {
+.popup-comment-card .pop-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,4 +258,36 @@ footer {
   background: white;
   width: 560px;
   position: relative;
+}
+
+form {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 400px;
+}
+
+input[type='text'],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.comment-btn {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-btn:hover {
+  background-color: #45a049;
 }
