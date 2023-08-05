@@ -1,5 +1,6 @@
+/* eslint-disable import/no-named-as-default-member */
 import axios from 'axios';
-import likeMovie from './add-likes';
+import likeMovie from './add-likes.js';
 import heart from '../assets/favico/movie.png';
 
 const displayMovies = document.querySelector('.display-movies');
