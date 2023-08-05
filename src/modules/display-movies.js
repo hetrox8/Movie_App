@@ -1,6 +1,6 @@
 import axios from 'axios';
 import likeMovie from './add-likes';
-import heart from '../assets/heart.png';
+import heart from '../assets/favico/movie.png';
 
 const displayMovies = document.querySelector('.display-movies');
 
