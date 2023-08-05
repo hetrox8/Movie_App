@@ -57,7 +57,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Vidvib',
+      title: 'javascript-capstone',
       filename: 'index.html',
       template: 'src/index.html',
     }),
