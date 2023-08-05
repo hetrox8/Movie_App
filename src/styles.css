@@ -34,7 +34,7 @@ button {
   border-radius: 5px;
   font-size: 16px;
   color: #fff;
-  background: rgba(33, 68, 246, 0.9);
+  background: blue;
   border: none;
 }
 
@@ -46,7 +46,7 @@ button {
 
 /* header */
 .head {
-  background: rgba(105, 129, 248, 0.8);
+  background: yellow;
 }
 
 .navbar {
@@ -96,7 +96,7 @@ button {
 
 /* Footer  */
 .foot {
-  background-color: rgba(105, 129, 248, 0.8);
+  background-color: grey;
 }
 
 .foot .container {
@@ -105,56 +105,4 @@ button {
   justify-content: space-between;
   align-items: center;
   color: white;
-}
-
-.popContainer {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  padding: 60px 0;
-  overflow: auto;
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.pop {
-  max-width: 600px;
-  padding: 20px;
-  margin: 0 auto;
-  background: #fff;
-}
-
-.popup {
-  display: flex;
-  flex-direction: column;
-}
-
-.closeBtn {
-  width: 20px;
-  margin-bottom: 10px;
-  position: relative;
-  left: 97%;
-}
-
-.addComment {
-  width: 200px;
-  height: 40px;
-  background-color: antiquewhite;
-  color: black;
-  margin-top: 10px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form input {
-  width: 200px;
-  height: 30px;
-  padding: 10px;
-  margin-block: 10px;
 }
