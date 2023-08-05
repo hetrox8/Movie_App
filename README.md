@@ -4,7 +4,7 @@
 
   <br/>
 
-  <h3><b>LeaderBoard</b></h3>
+  <h3><b></b></h3>
 
 </div>
 
@@ -37,7 +37,7 @@ Hetroxity academy is an online based computer programming institution . our goal
 - HTML
 - CSS
 - JAVASCRIPT
-
+- API (https://www.tvmaze.com/api)
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
