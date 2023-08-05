@@ -1,11 +1,11 @@
-/* src/styles.css */
+html {
+  scroll-behavior: smooth;
+}
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  list-style: none;
-  scroll-behavior: smooth;
-  box-sizing: border-box;
 }
 
 .icon-heart {
@@ -42,177 +42,100 @@
 }
 
 body {
-  position: relative;
-  font-family: Inter, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.backgrounds {
-  position: relative;
+i {
+  cursor: pointer;
 }
 
 a {
   text-decoration: none;
 }
 
-.nav-list {
-  color: green;
-}
-
-li:hover {
-  color: green;
-}
-
-nav {
-  background: #b65353;
-  position: relative;
-  color: #fff;
-  margin-bottom: 5%;
-}
-
 img {
-  border-radius: 20px;
+  width: 100%;
 }
 
-button.comment-btn {
-  width: 60%;
-  height: 30px;
-  border-radius: 20px;
+.like-icon {
+  width: 20px;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
   color: #fff;
-  background: #49ab74;
+  background: rgba(33, 68, 246, 0.9);
+  border: none;
 }
 
-h3 {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 45px;
+.container {
+  padding: 0 40px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-@media (width >= 375px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .mobile-menu-icon {
-    display: flex;
-    justify-content: end;
-    padding: 20px 35px;
-  }
-
-  .mobile-menu-close-icon {
-    display: none;
-  }
-
-  .social-icons ul {
-    display: flex;
-    gap: 20px;
-    margin-top: 1.25rem;
-    list-style: none;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .social-icons ul li a {
-    text-decoration: none;
-  }
-
-  .nav-menu.show {
-    display: block;
-    height: 100vh;
-    background: #fff;
-    animation: 2s slidein ease-in alternate;
-  }
-
-  @keyframes slidein {
-    0% {
-      transform: translateX(-50%);
-    }
-
-    100% {
-      transform: translateX(0);
-    }
-  }
-
-  .nav-menu.show ul {
-    margin-left: 28px;
-    list-style: none;
-    display: grid;
-    gap: 40px;
-    padding-top: 108px;
-  }
-
-  .nav-menu.show li a {
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-    color: #3a4a42;
-  }
-
-  .mobile-menu-icon.show {
-    display: none;
-  }
-
-  .mobile-menu-close-icon.show {
-    display: block;
-    position: absolute;
-    content: '';
-    top: 1.125rem;
-    right: 2.1875rem;
-  }
-
-  nav svg {
-    height: 60px;
-  }
+/* header */
+.head {
+  background: rgba(105, 129, 248, 0.8);
 }
 
-@media (width >= 768px) {
-  .nav-menu {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5rem;
-  }
-
-  .nav-menu ul {
-    display: flex;
-    gap: 25px;
-  }
-
-  .nav-menu ul li a {
-    text-decoration: none;
-    font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
-    text-align: center;
-    color: #050e1d;
-  }
-
-  .nav-menu li a:hover {
-    color: #2b45bb;
-  }
-
-  .nav-menu li a:active {
-    color: #5c6cb3;
-  }
-
-  .mobile-menu-icon {
-    display: none;
-  }
-
-  .mobile-menu-close-icon {
-    display: none;
-  }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
 }
 
-footer {
-  font-family: Lato, sans-serif;
-  font-size: 28px;
-  color: #000;
-  font-weight: 500;
-  margin-top: 15%;
-  text-align: center;
+.navbar .navbar-ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .navbar-ul .navbar-link {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600px;
+}
+
+.movies {
+  margin: 50px 0;
+}
+
+.movies .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.movies .card {
+  max-width: 400px;
+  margin: auto;
+}
+
+.movies .card h3 {
+  margin-block: 10px;
+}
+
+.movies .card .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 20px;
+}
+
+/* Footer  */
+.foot {
+  background-color: rgba(105, 129, 248, 0.8);
+}
+
+.foot .container {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
