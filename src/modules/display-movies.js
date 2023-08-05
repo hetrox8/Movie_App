@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-named-as-default-member */
 import axios from 'axios';
 import likeMovie from './add-likes.js';
