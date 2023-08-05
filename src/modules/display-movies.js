@@ -1,5 +1,6 @@
 import axios from 'axios';
-import heart from '../assets/heart.png';
+import likeMovie from './add-likes';
+import heart from '../assets/favico/movie.png';
 
 const displayMovies = document.querySelector('.display-movies');
 
@@ -20,10 +21,15 @@ const displayList = async () => {
       <h3>${movie.name}</h3>
       <div class="card-body">
         <button>Comment</button>
-        <p>${img.outerHTML} Likes</p>
+        <p>${img.outerHTML} <span class="like-count">0</span> Likes</p>
       </div>
       `;
       displayMovies.appendChild(card);
+
+      const likeIcon = card.querySelector('.like-icon');
+      likeIcon.addEventListener('click', () => {
+        likeMovie(movie.id);
+      });
     });
   } catch (error) {
     console.error('Error:', error);
