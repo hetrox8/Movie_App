@@ -1,5 +1,5 @@
 import axios from 'axios';
-import getAppName from './localstorage';
+import { getAppName } from './localstorage';
 
 const likeMovie = async (movieId) => {
   try {
