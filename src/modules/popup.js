@@ -1,9 +1,10 @@
 import axios from 'axios';
 import closeImg from '../assets/close.png';
-import { getAppName } from './localstorage.js';
+import getAppName from './localstorage';
+import commentCounter from './commentCount';
+import errorMsg from './error-message';
 
 const fetchMovie = async (movieid) => {
-  console.log(movieid);
   const url = `https://api.tvmaze.com/shows/1/episodebynumber?season=1&number=${movieid}`;
   const response = await fetch(url);
   const movies = await response.json();
@@ -18,7 +19,6 @@ const postComments = async (id, username, comment) => {
   });
   const commentDiv = document.querySelector('.commentDiv');
   let today = new Date();
-  console.log(today);
   let dd = today.getDate();
   let mm = today.getMonth() + 1;
   const yyyy = today.getFullYear();
@@ -34,7 +34,8 @@ const postComments = async (id, username, comment) => {
     ${today}  ${username}: ${comment}
   `;
   commentDiv.appendChild(p);
-  console.log('Comment added:', response.data);
+  errorMsg(response.data, 'green');
+  commentCounter();
 };
 
 const displayComments = async (id) => {
@@ -51,8 +52,9 @@ const displayComments = async (id) => {
       commentsContainer.appendChild(newComment);
     });
   } catch (error) {
-    console.error(error);
+    errorMsg('Error', 'red');
   }
+  commentCounter();
 };
 
 const popContainer = document.querySelector('.popContainer');
@@ -69,9 +71,8 @@ const displayCommentPop = async (movieid) => {
       <img class="img" src="${movieDetails.image.original}" alt="${movieDetails.name}" />
       <h2 class="title">${movieDetails.name}</h2>
       <p class="summary">${movieDetails.summary}</p>
+      <h4 class="comment-count">Comments <span class="counter"></span></h4>
       <div class="commentDiv">
-        <h4>Comments</h4>
-        <p class="comments">2024/06/11: dummy comment</p>
       </div>
       <div class="formDiv">
         <h2>Add a Comment</h2>
@@ -98,7 +99,7 @@ const displayCommentPop = async (movieid) => {
     const username = document.querySelector('.nameField').value;
     const comment = document.querySelector('.commentField').value;
     if (username.trim() === '' || comment.trim() === '') {
-      console.log('empty');
+      errorMsg('All field are required', 'red');
     } else {
       postComments(movieDetails.id, username, comment);
       displayComments(movieDetails.id);

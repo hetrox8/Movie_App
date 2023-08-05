@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getAppName from './localstorage';
+import errorMsg from './error-message';
 
 const fetchLikes = async (itemId) => {
   try {
@@ -8,7 +9,7 @@ const fetchLikes = async (itemId) => {
     const itemLikes = likes.find((like) => like.item_id === itemId);
     return itemLikes ? itemLikes.likes : 0;
   } catch (error) {
-    console.error('Error:', error);
+    errorMsg('Error', 'red');
     return 0;
   }
 };
